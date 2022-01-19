@@ -8,7 +8,7 @@ count=var.INSTANCE_COUNT
   }
   subnet_id = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNETS[count.index]
   wait_for_fulfillment = true
-  vpc_security_group_ids = aws_security_group.sg.id
+  vpc_security_group_ids = [aws_security_group.sg.id]
 }
 resource "aws_ec2_tag" "spot_instance" {
   count=length(aws_spot_instance_request.ec2-spot)
